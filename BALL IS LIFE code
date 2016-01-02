@@ -1,0 +1,886 @@
+//the code for BALL IS LIFE
+// this code is made in processing JS
+var currentScene;
+
+//scene1 variabes
+    var ex = 9;
+    var ey = 200;
+    var mve = 1;
+    var go = 1;
+//scene2 variables
+var g = 0;
+var j = 0;
+var b = 50;
+var y = 0;
+var x = 0;// how far the ball moves every time
+var sise = 100;
+var speed = 10;
+var movement = 10;
+var vel = 1;  
+var velo = 1;
+var rightX = 360;
+var time = 10;  
+var time2 = 15;
+var time3 = 15;
+// Time, starting at 0
+var t = 0;
+// The height of the ball, where 0 is on the ground
+var y = 0;
+
+
+var btn1 = {
+    x: 130,
+    y: 167,
+    width: 150,
+    height: 50,
+    text: "Begin",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 43,
+    clr2: 255,
+    clr3: 0
+
+};
+
+var btn2 = {
+    x: 130,
+    y: 260,
+    width: 150,
+    height: 50,
+    text: "How To Play ",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 0,
+    clr2: 43,
+    clr3: 255
+
+};
+//back
+var btn3 = {
+    x: 0,
+    y: 349,
+    width: 74,
+    height: 50,
+    text: "Back",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 255,
+    clr2: 242,
+    clr3: 0
+
+};
+
+var btn4 = {
+     x: 83,
+    y: 127,
+    width: 251,
+    height: 118,
+    text: "How Many Balls Are There?",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 10,
+    clr2: 210,
+    clr3: 245
+};  
+//NUMBER 8
+var btn5 = {
+     x: 266,
+    y: 180,
+    width: 28,
+    height: 28,
+    text: "8",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 255,
+    clr2: 111,
+    clr3: 0
+};  
+//other nums
+var btn6 = {
+     x: 83,
+    y: 180,
+    width: 188,
+    height: 28,
+    text: "1   2   3   4   5   6   7",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 255,
+    clr2: 111,
+    clr3: 0
+}; 
+var btn7 = {
+     x: 286,
+    y: 180,
+    width: 57,
+    height: 28,
+    text: "9  10",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 255,
+    clr2: 111,
+    clr3: 0
+}; 
+//back to menu
+var btn8 = {
+    x: 0,
+    y: 349,
+    width: 129,
+    height: 50,
+    text: "Back to menu",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 0,
+    clr2: 255,
+    clr3: 81
+
+};
+//next level
+var btn9 = {
+     x: 277,
+    y: 350,
+    width: 123,
+    height: 50,
+    text: "Next Level",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 0,
+    clr2: 255,
+    clr3: 81
+};
+//retry
+var btn10 = {
+
+     x: 277,
+    y: 350,
+    width: 123,
+    height: 50,
+    text: "Retry",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 0,
+    clr2: 187,
+    clr3: 255
+
+};
+//retry2
+var btn11 = {
+     x: 277,
+    y: 350,
+    width: 123,
+    height: 50,
+    text: "Retry",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 0,
+    clr2: 187,
+    clr3: 255
+};
+//next level 2
+var btn12 = {
+     x: 278,
+    y: 350,
+    width: 123,
+    height: 50,
+    text: "Next Level",
+    tAlgn1: LEFT,
+    tAlgn2: TOP,
+    clr1: 0,
+    clr2: 255,
+    clr3: 81
+};
+var drawButton = function(btn) {
+    
+    fill(btn.clr1, btn.clr2, btn.clr3);
+    rect(btn.x, btn.y, btn.width, btn.height, 5);
+    noStroke();
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign( btn.tAlgn1, btn.tAlgn2);
+    text(btn.text, btn.x+10, btn.y+btn.height/4);
+};
+
+
+var isMouseInside = function(btn) {
+    return (mouseX >= btn.x &&
+            mouseX <= (btn.x+btn.width) &&
+            mouseY >= btn.y && 
+            mouseY <= (btn.y+btn.height));
+};
+
+var drawBar = function(bar) {
+    
+    fill(bar.clr1, bar.clr2, bar.clr3);
+    rect(bar.x, bar.y, bar.width, bar.height, 100);
+    noStroke();
+    
+    
+};
+
+var isMouseInside = function(bar) {
+    return (mouseX >= bar.x &&
+            mouseX <= (bar.x+bar.width) &&
+            mouseY >= bar.y && 
+            mouseY <= (bar.y+bar.height));
+};
+//START SCENE
+var drawScene1 = function(){
+    
+    
+    currentScene = 1;
+    
+    
+        
+    background(0);
+    
+    drawButton(btn1);
+    drawButton(btn2);
+    
+    noStroke();
+    fill(ex, ey, random(0,255));
+    textSize(40);
+    text("Ball is Life", 120,74);
+    
+    //ball effect
+    fill(ex, ey, ey);
+    ellipse(ex+130,ey+0,50,50);
+    fill(ex, ex, ey);
+    ellipse(ex+ey,ey+-106,50,50);
+    fill(ex, ey, ey);
+    ellipse(ex*ey+10,ey+ex,50,50);
+    fill(ex, ex, ex);
+    ellipse(ex-ey,ey-ex,50,50);
+    fill(ex, ey, mouseX);
+    ellipse(ex+ex,ey+ey,50,50);
+    fill(ex, mouseY, ey);
+    ellipse(ey-ex,ey*ex,50,50);
+    fill(mouseY, ey, ey);
+    ellipse(ex+ey,ey-ex,50,50);
+    fill(ex, ex, ey);
+    ellipse(ex+271,ey+92,50,50);
+    fill(ex, ex, ey);
+    ellipse(ey,ex,50,50);
+   
+   
+    
+
+    ex = ex + mve;
+    ey = ey + go;
+    
+    if(ex >= 300){
+        mve = random(-20,-1);
+    }
+    if(ey >= 400){
+        go = random(-20,-1);
+    }
+    if(ex <= -150){
+        mve = random(1,20);
+    }
+    if(ey <= 0){
+        go = random(1,20);
+    }
+    
+    };
+
+//LEVEL 1
+var drawScene2 = function(){
+currentScene = 2;
+
+
+
+    noStroke();
+   // Clear previous drawings and fill in a sky color
+    background(0);
+    
+    
+    textSize(100);
+    text( round(time) , 179,115);
+    time = time - 0.018;
+    if(time < 0){
+        time = 0;
+    }
+    // Draw the ground
+    fill(255, 255, 255);
+    rect(0, 250, 400, 150);     
+    // Calculate y according to the path of a parabola with respect to "t":
+    // y = (velocity)*t - (acceleration)*t^2;
+    // We can tweak the velocity and acceleration constants for our fake world
+    y = -0.02*t*t + 4.0*t;
+    
+    // We make the shadow lighter as we increase y
+    var grey = 0.1 * y + 200;
+    // We grow the shadow bigger as we increase y
+    var shadowSize = 0.2 * y + 50;
+    // Draw the shadow
+    fill(grey, grey, grey);
+    ellipse(200, 300, shadowSize, 10);
+    
+    // Since y is a positive height, we need to flip it
+    // to look right on the inverted coordinate plane
+    var correctedY = 250 - y;
+
+    // Draw the ball
+    fill(71, 117, 255);
+    ellipse(200, correctedY, 50, 50);
+
+    // If y becomes negative, the ball has hit the ground
+    if (y < 0) {
+        // Now we reset t to make it "bounce" up again
+        t = 0;
+    }
+    
+    t += 5;
+   
+    
+
+//other balls
+/*var j = 0;
+var b = 50;
+var y = 0;
+var x = 0;// how far the ball moves every time
+var sise = 100;
+var speed = 10;
+var movement = 10;
+var move = 10;*/
+fill(y,random(1,255),random(1,255));
+    ellipse(200, y, b, b);
+    fill(x,random(1,255),random(1,255));
+    ellipse(x, 200, b, b);
+    fill(y,random(1,255),random(1,255));
+    ellipse(x, y, b, b);
+    fill(y,x,b);
+    ellipse(j+150, g+0, 50, 50);
+    fill(x,y,b);
+    ellipse(g+0, j+150, 50, 50);
+    fill(random(0,255), x, random(0,255));
+    ellipse(g,x,movement + 50,movement + 50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(x,g,velo + 50,velo + 50);
+    // move the ball
+    g = g + velo;
+    j = j + vel;
+    b = b + sise;
+    y = y + speed;
+    x = x + movement;
+if (y > 400) {
+    speed = -10;
+}
+
+if (y < 0) {
+    speed = 10;
+}
+if (x > 400) {
+    movement = -10;
+}
+
+if (x < 0) {
+    movement = 10;
+}
+
+if (b > 100) {
+    sise = -10;
+    
+}
+if (b < 20){
+    sise = 10;
+    }
+
+if (j >= 280) {
+    vel = -1;
+    
+}
+if (j <= -200){
+    vel = 1;
+    }
+
+if (g > 400) {
+    velo = -25;
+}
+
+if (g < 0) {
+    velo = 25;
+}
+ 
+ if( time > 0 ){
+ }
+ else{
+     
+    background(j,x,g);
+    drawButton(btn4);
+    drawButton(btn6);
+    drawButton(btn7);
+    drawButton(btn5);
+ }
+
+ 
+ 
+
+};
+//HTP
+var drawScene3 = function(){
+    currentScene = 3;
+    
+    background(5, 125, 245);
+    
+    
+    fill(0,0, 0);
+    textSize(38);
+    text("How To Play", 91, 50);
+    textSize(20);
+    fill(77, 255, 0);
+    text("Lv.1  Count the balls in 10 seconds",21,152);
+    text("Lv.2  Avoid the balls for 15 seconds and",21,190);
+    text("you must keep your mouse in the screen",21,216);
+    text("Lv.3 Avoid those balls",21,250);
+    drawButton(btn3);
+};
+//wrong you lose
+var drawScene4 = function(){
+currentScene = 4; 
+
+background(255, 0, 0);
+textSize(50);
+text("YOU LOSE", 75,229);
+text("WRONG!!!", 78,135);
+drawButton(btn8);
+
+};
+//next level 1
+var drawScene5 = function(){
+currentScene = 5; 
+
+background(0, 34, 255);
+textSize(48);
+text("GOOD CHOICE", 23,66);
+textSize(20);
+text("YOU'VE COMPLETED THE FIRST LEVEL", 7,162);
+
+drawButton(btn9);
+};
+//next level 2
+var drawScene11 = function(){
+currentScene = 11; 
+
+background(0, 34, 255);
+textSize(48);
+text("GOOD JOB", 65,66);
+textSize(19);
+text("YOU'VE COMPLETED THE SECOND LEVEL", 2,162);
+
+drawButton(btn12);
+};
+//you lose
+var drawScene7 = function(){
+    currentScene = 7;
+    background(255, 0, 0);
+    textSize(50);
+    fill(0, 0, 0);
+    text("YOU LOSE", 75,118);
+    drawButton(btn8);
+    drawButton(btn10);
+};
+//you winn it all
+var drawScene8 = function(){
+currentScene = 8;
+background(25, 38, 92);
+textSize(50);
+text("You've done it!!", 35,100);
+drawButton(btn8);
+};
+//you lose lvl3
+var drawScene10 = function(){
+currentScene = 10;
+    background(255, 0, 0);
+    textSize(50);
+    fill(0, 0, 0);
+    text("YOU LOST", 75,118);
+    drawButton(btn11);
+    drawButton(btn8);
+
+};
+//level 3
+var drawScene9 = function(){
+    currentScene = 9;
+
+
+
+    noStroke();
+   // Clear previous drawings and fill in a sky color
+    background(0);
+    textSize(10);
+   text("LEVEL 3", 100,100);
+var bar1 = {
+  x: x+-25,
+  y: g+-24,
+  width: 49,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+var bar2 = {
+  x: g+-23,
+  y: x+-25,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+var bar3 = {
+  x: x+112,
+  y: g+-24,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+var bar4 = {
+  x: g+-136,
+  y: x+-25,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+ var bar5 = {
+  x: x+-149,
+  y: g+-24,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+}; 
+var bar6 = {
+  x: g+111,
+  y: x+-25,
+  width: 49,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+}; 
+    
+    textSize(100);
+    text( round(time3) , 179,207);
+    time3 = time3 - 0.018;
+    if(time3 < 0){
+        time3 = 0;
+    }
+    
+    drawBar(bar1);
+    drawBar(bar2);
+    drawBar(bar3);
+    drawBar(bar4);
+    drawBar(bar5);
+    drawBar(bar6);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(x+0,g+0, 50,50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(g+0,x+0, 50,50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(x+135,g+0, 50,50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(g+135,x+0, 50,50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(x+-126,g+0, 50,50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(g+-113,x+0, 50,50);
+    // move the ball
+    if (time3 < 14){
+      g = g + velo;
+    x = x + movement;
+ }
+   
+
+if (x > 400) {
+    movement = -7;
+}
+
+if (x < 0) {
+    movement = 3 ;
+}
+
+if (g > 400) {
+    velo = -9;
+}
+
+if (g < 0) {
+    velo = 5;
+}
+ 
+if (isMouseInside(bar1) || isMouseInside(bar2) || isMouseInside(bar3) || isMouseInside(bar4) || isMouseInside(bar5) || isMouseInside(bar6) && currentScene === 9) {
+
+        drawScene10();    
+    }
+mouseOut = function(){
+    drawScene10();
+};
+if (time3 === 0){
+    drawScene8();
+
+}
+
+ 
+ 
+
+};
+//level 2
+var drawScene6 = function(){
+  
+    currentScene = 6;
+  
+var bar1 = {
+  x: g+-24,
+  y: j+125,
+  width: 49,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+var bar2 = {
+  x: j+31,
+  y: g+-25,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+var bar3 = {
+  x: j+127,
+  y: g+-25,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+var bar4 = {
+  x: j+212,
+  y: g+-25,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+};
+ var bar5 = {
+  x: g+80,
+  y: j+125,
+  width: 49,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+}; 
+var bar6 = {
+  x: g+186,
+  y: j+125,
+  width: 49,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+}; 
+var bar7 = {
+  x: g+322,
+  y: j+125,
+  width: 49,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+}; 
+ var bar8 = {
+  x: j+-57,
+  y: g+-25,
+  width: 48,
+  height: 50,
+  clr1: 0,
+  clr2: 0,
+  clr3: 0
+  
+
+
+}; 
+    background(0, 0, 0);
+   
+   textSize(10);
+   text("LEVEL 2", 100,100);
+   
+    fill(random(0,255), g, j);
+    textSize(100);
+    text( round(time2) , 172,223);
+    time2 = time2 - 0.018;
+    if(time2 < 0){
+        time2 = 0;
+    }
+    drawBar(bar1);
+    drawBar(bar2);
+    drawBar(bar3);
+    drawBar(bar4);
+    drawBar(bar5);
+    drawBar(bar6);
+    drawBar(bar7);
+    drawBar(bar8);
+    fill(j,random(0,255),random(0,255));
+    ellipse(j+150, g+0, 50, 50);
+    fill(random(0,255),g,random(0,255));
+    ellipse(g+0, j+150, 50, 50);
+    fill(random(0,255),random(0,255),j);
+    ellipse(j+55, g+0, 50, 50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(g+104, j+150, 50, 50);
+    fill(g,j,random(0,255));
+    ellipse(j+-33, g+0, 50, 50);
+    fill(j,g,random(0,255));
+    ellipse(g+210, j+150, 50, 50);
+    fill(g,j,random(0,255));
+    ellipse(j+236, g+0, 50, 50);
+    fill(j,g,random(0,255));
+    ellipse(g+347, j+150, 50, 50);
+    fill(255, 0, 0);
+     
+    /*fill(random(0,255), x, random(0,255));
+    ellipse(g,x,movement + 50,movement + 50);
+    fill(random(0,255),random(0,255),random(0,255));
+    ellipse(x,g,velo + 50,velo + 50);
+    */// move the ball
+   
+   
+/*if (time2 > 14){
+     vel = 0;
+     velo = 0;
+ }else*/ if (time2 < 14){
+      g = g + velo;
+    j = j + vel;
+ }
+
+if (j >= 280) {
+    vel = -5;
+    
+}
+if (j <= -200){
+    vel = 5;
+    }
+
+if (g > 400) {
+    velo = -5;
+}
+
+if (g < 0) {
+    velo = 1;
+}
+ 
+if (isMouseInside(bar1) || isMouseInside(bar2) || isMouseInside(bar3) || isMouseInside(bar4) || isMouseInside(bar5) || isMouseInside(bar6) || isMouseInside(bar7) || isMouseInside(bar8) && currentScene === 6) {
+
+        drawScene7();    
+    }
+mouseOut = function(){
+    drawScene7();
+};
+if (time2 === 0){
+    drawScene11();
+
+}
+
+};
+
+
+
+
+draw = function() {
+    if (currentScene === 1) {
+        drawScene1();
+    }else if (currentScene === 2) {
+        drawScene2();
+    }else if (currentScene === 6) {
+        drawScene6();
+   }else if (currentScene === 9) {
+        drawScene9();
+   }
+};
+
+
+mouseClicked = function() {
+    if (isMouseInside(btn1) && currentScene === 1)     {
+        drawScene2();    
+    } else if (isMouseInside(btn2) && currentScene === 1)     {
+        drawScene3();    
+    }else if (isMouseInside(btn3) && currentScene === 3)     {
+        drawScene1();    
+    }else if (isMouseInside(btn6) && currentScene === 2 && time === 0)     {
+        drawScene4();    
+    }else if (isMouseInside(btn5) && currentScene === 2 && time === 0)     {
+        drawScene5();    
+    }else if (isMouseInside(btn7) && currentScene === 2 && time === 0)     {
+        drawScene4();    
+    }else if (isMouseInside(btn8)){
+        drawScene1();    
+        time2 = 15;
+    }else if (isMouseInside(btn9) && currentScene === 5)     {
+        drawScene6();    
+        }else if (isMouseInside(btn10) && currentScene === 7)     {
+        drawScene6();    
+        time2 = 15;
+        }else if (isMouseInside(btn11) && currentScene === 10)     {
+        drawScene9();    
+        time3 = 15;
+        }else if (isMouseInside(btn12) && currentScene === 11)     {
+        drawScene9();    
+        time3 = 15;
+        }
+    mouseOut = function(){
+    
+    
+    };
+};
+
+
+drawScene1();
+
+
+    
