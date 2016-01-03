@@ -1,2 +1,29 @@
-//paste this to your browser url
-file:///C:/Users/jsett/Desktop/BALL%20IS%20LIFE%20Beta.html
+<!DOCTYPE html>
+//copy this html file to a text editor and run it in your favorite browser
+<html>
+<head>
+<h1> Ball is Life </h1>
+<script type="text/javascript">
+
+ var x=window.confirm("Ready to play the beta version of Ball is Life?");
+ if (x)
+	var sure=confirm("Are you sure? This game is pretty hard.")
+	if (sure = "yes")
+		window.alert("Okay, but I warned you.")
+	
+
+else
+	window.alert("Thats Too bad")
+
+
+ 
+ 
+
+</script>
+</head>
+<body>
+ 
+<h2><script src="https://www.khanacademy.org/computer-programming/ball-is-life/6140148286357504/embed.js?editor=no&amp;buttons=no&amp;author=no&amp;embed=yes"></script><h2> 
+
+</body>
+ </html>
